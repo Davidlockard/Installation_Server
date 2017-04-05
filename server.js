@@ -41,9 +41,9 @@ io.on('connection' client=>{
   console.log(client);
 
   client.messages.create({
-    body: 'Hello from Node',
-    to: '+12345678901',  // Text this number
-    from: '+12345678901' // From a valid Twilio number
+    body: 'We are fucking sending SMS from our sockets',
+    to: '+19172468365',  // Text this number
+    from: '+12245151972' // From a valid Twilio number
   }, function(err, message) {
     console.log(message.sid);
   });
