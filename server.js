@@ -58,7 +58,7 @@ app.get('/projector', (req, res)=>{
 //Handels reciving messages from twilio
 app.post('/message', (req, res)=>{
 
-  console.log(req.body);
+  console.log(req.body.Body);
 
 });
 
