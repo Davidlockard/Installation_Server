@@ -28,8 +28,21 @@ const bodyParser = require('body-parser');
 const io = require('socket.io').listen(server);
 
 let Names = {
-
+  or: {
+    'lesson02',
+    'lesson03'
+  },
+  david: {
+    'lesson04',
+    'lesson05'
+  }
+  shir: {
+    'lesson06',
+    'lesson07'
+  }
 }
+
+let nameNotFound = 'sorry';
 
 //App config
 app.set('views', __dirname + '/views');
@@ -54,14 +67,7 @@ io.on('connection', client=>{
   console.log('The projector is connected');
 
 
-
-
-
-
-
-
-
-
+  //Projector disconnected
   client.on('disconnect', ()=>{
 
     console.log('The projector disconnected');
@@ -86,6 +92,12 @@ app.get('/projector', (req, res)=>{
 app.post('/message', (req, res)=>{
 
   console.log(req.body.Body.toLowerCase());
+
+  for(let i = 0; i < Object.keys(Names).length; i++){
+    if(req.body.Body.toLowerCase() == Object.keys(Names)[i]){
+      console.log("we found a match for " + Object.keys(Names)[i]);
+    }
+  }
 
 
   res.end();
