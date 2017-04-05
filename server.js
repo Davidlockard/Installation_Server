@@ -20,7 +20,7 @@ let twilioCred = {
   auth: 'f919c2750049933dc2943d987dc2c089'
 }
 const twilio = require('twilio');
-let client = new twilio.RestClient(twilioCred.sid, twilioCred.auth);
+let twilioClient = new twilio.RestClient(twilioCred.sid, twilioCred.auth);
 
 //Socket.io
 const io = require('socket.io').listen(server);
@@ -40,7 +40,7 @@ io.on('connection', client=>{
 
   console.log(client);
 
-  client.messages.create({
+  twilioClient.messages.create({
     body: 'We are fucking sending SMS from our sockets',
     to: '+19172468365',  // Text this number
     from: '+12245151972' // From a valid Twilio number
