@@ -38,7 +38,7 @@ console.log("The server is running on localhost:" + port);
 //Socket - manages our communications
 io.on('connection', client=>{
 
-  console.log(client);
+  console.log(Object.keys(client.connected).length);
 
 });
 
