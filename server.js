@@ -40,14 +40,6 @@ io.on('connection', client=>{
 
   console.log(client);
 
-  twilioClient.messages.create({
-    body: 'We are fucking sending SMS from our sockets',
-    to: '+19172468365',  // Text this number
-    from: '+12245151972' // From a valid Twilio number
-  }, function(err, message) {
-    console.log(message.sid);
-  });
-
 });
 
 //Router - manages our routes
@@ -55,6 +47,13 @@ io.on('connection', client=>{
 app.get('/projector', (req, res)=>{
 
     res.render('projector.html');
+
+});
+
+//Handels reciving messages from twilio
+app.get('/message', (req, res)=>{
+
+  console.log(req.body);
 
 });
 
