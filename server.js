@@ -29,16 +29,16 @@ const io = require('socket.io').listen(server);
 
 let Names = {
   or: {
-    'lesson02',
-    'lesson03'
+    lesson02,
+    lesson03
   },
   david: {
-    'lesson04',
-    'lesson05'
-  }
+    lesson04,
+    lesson05
+  },
   shir: {
-    'lesson06',
-    'lesson07'
+    lesson06,
+    lesson07
   }
 }
 
