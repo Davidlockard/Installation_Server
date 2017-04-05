@@ -22,6 +22,8 @@ let twilioCred = {
 const twilio = require('twilio');
 let twilioClient = new twilio.RestClient(twilioCred.sid, twilioCred.auth);
 
+const bodyParser = require('body-parser');
+
 //Socket.io
 const io = require('socket.io').listen(server);
 
@@ -33,12 +35,15 @@ app.set('view-engine', 'html');
 //Setup the public space
 app.use(express.static(__dirname + '/public'));
 
+//setup the app to use body parser for HTTP requests
+app.use(bodyParser.urlencoded({extended: false}));
+
 console.log("The server is running on localhost:" + port);
 
 //Socket - manages our communications
 io.on('connection', client=>{
 
-  console.log(Object.keys(client.connected).length);
+  console.log("We currently have " + Object.keys(client.connected).length + " users connected");
 
 });
 
@@ -51,7 +56,7 @@ app.get('/projector', (req, res)=>{
 });
 
 //Handels reciving messages from twilio
-app.get('/message', (req, res)=>{
+app.post('/message', (req, res)=>{
 
   console.log(req.body);
 
