@@ -27,6 +27,10 @@ const bodyParser = require('body-parser');
 //Socket.io
 const io = require('socket.io').listen(server);
 
+let Names = {
+
+}
+
 //App config
 app.set('views', __dirname + '/views');
 app.engine('.html', ejs.__express);
@@ -40,12 +44,35 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 console.log("The server is running on localhost:" + port);
 
+
+
+
+
 //Socket - manages our communications
 io.on('connection', client=>{
 
-  console.log("We currently have " + Object.keys(client.connected).length + " users connected");
+  console.log('The projector is connected');
+
+
+
+
+
+
+
+
+
+
+  client.on('disconnect', ()=>{
+
+    console.log('The projector disconnected');
+
+  });
 
 });
+
+
+
+
 
 //Router - manages our routes
 
@@ -58,7 +85,7 @@ app.get('/projector', (req, res)=>{
 //Handels reciving messages from twilio
 app.post('/message', (req, res)=>{
 
-  console.log(req.body.Body);
+  console.log(req.body.Body.toLowerCase());
 
 
   res.end();

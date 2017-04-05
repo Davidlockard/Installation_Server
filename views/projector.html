@@ -6,18 +6,19 @@
 		Projector portal
 	</title>
 	<script src="js/lib/socket.io.min.js"></script>
+
+	<style>
+	body{
+		background-color: #000;
+		color: #fff;
+	}
+	</style>
 	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
 </head>
 <body>
-<h1>Our server is running</h1>
-
+<h1 id="hello_name"></h1>
+<div id="gif_container"></div>
+<script src="js/src/client.js"></script>
 </body>
-<script>
-	var socket = io();
-
-	socket.on('connect', function(){
-
-	});
-</script>
 </html>
