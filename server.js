@@ -22,6 +22,9 @@ let twilioCred = {
 const twilio = require('twilio');
 let client = new twilio.RestClient(twilioCred.sid, twilioCred.auth);
 
+//Socket.io
+const io = require('socket.io').listen(server);
+
 //App config
 app.set('views', __dirname + '/views');
 app.engine('.html', ejs.__express);
@@ -32,17 +35,26 @@ app.use(express.static(__dirname + '/public'));
 
 console.log("The server is running on localhost:" + port);
 
+//Socket - manages our communications
+io.on('connection' client=>{
+
+  console.log(client);
+
+  client.messages.create({
+    body: 'Hello from Node',
+    to: '+12345678901',  // Text this number
+    from: '+12345678901' // From a valid Twilio number
+  }, function(err, message) {
+    console.log(message.sid);
+  });
+
+});
+
+//Router - manages our routes
+
 app.get('/projector', (req, res)=>{
 
     res.render('projector.html');
-
-    client.messages.create({
-    body: 'Shalom from our node server',
-    to: '+19172468365',  // Text this number
-    from: '+12245151972' // From a valid Twilio number
-    }, function(err, message) {
-        console.log(message.sid);
-    });
 
 });
 
@@ -50,4 +62,4 @@ app.get('/*', (req, res)=>{
 
     res.render('404.html')
 
-})
+});
