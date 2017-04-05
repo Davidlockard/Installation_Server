@@ -91,10 +91,12 @@ app.get('/projector', (req, res)=>{
 //Handels reciving messages from twilio
 app.post('/message', (req, res)=>{
 
+  var keys = Object.keys(Names);
+
   for(let i = 0; i < Object.keys(Names).length; i++){
-    if(req.body.Body.toLowerCase() == Object.keys(Names)[i]){
-      console.log("we found a match for " + Object.keys(Names)[i]);
-      console.log("the gifs for " + Object.keys(Names)[i] + " are " + Object.values(Names)[i]);
+    if(req.body.Body.toLowerCase() == keys[i]){
+      console.log("we found a match for " + keys[i]);
+      console.log("the gifs for " + keys[i] + " are " + Names[keys[i]);
     }
   }
 
