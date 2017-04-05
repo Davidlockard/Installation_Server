@@ -59,7 +59,9 @@ app.get('/projector', (req, res)=>{
 app.post('/message', (req, res)=>{
 
   console.log(req.body.Body);
-  console.log(res);
+
+
+  res.end();
 
 
 });
