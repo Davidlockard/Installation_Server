@@ -9,5 +9,13 @@ $(document).ready(function(){
 
   });
 
+  socket.on('newName', function(data){
+    $('#gif_container').fadeOut(250, function(){
+      $('#hello_name').empty().append('Hello ' + data.name);
+      $('#gif_container').empty().append('<img src="assets/gifs/' + data.gifs[0] + '.gif" width="1024" height="768" />')
+      $('#gif_container').fadeIn(250);
+    })
+  })
+
 
 });

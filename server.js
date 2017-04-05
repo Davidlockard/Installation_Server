@@ -96,7 +96,12 @@ app.post('/message', (req, res)=>{
   for(let i = 0; i < Object.keys(Names).length; i++){
     if(req.body.Body.toLowerCase() == keys[i]){
       console.log("we found a match for " + keys[i]);
-      console.log("the gifs for " + keys[i] + " are " + Names[keys[i]]);
+      //console.log("the gifs for " + keys[i] + " are " + Names[keys[i]]);
+      var pkg = {
+        name: keys[i],
+        gifs: Names[keys[i]]
+      }
+      io.sockets.emit('newName', pkg);
     }
   }
 
